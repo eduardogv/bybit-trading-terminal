@@ -32,7 +32,7 @@ class Order():
         # Get wallet balance of the Unified Trading Account
         self.__account_balance = self.__session.get_wallet_balance(accountType="CONTRACT")
         self.__account_balance = self.__account_balance["result"]["list"][0]["coin"][0]["equity"]
-        print(self.__account_balance)
+        print(f"El balance de su cuenta es: {self.__account_balance}.")
         return self.__account_balance
         
         

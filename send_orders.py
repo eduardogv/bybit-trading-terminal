@@ -73,8 +73,8 @@ class Order():
             positionIdx=2,
         ))
 
-prueba = Order()
-prueba.open_long("0.6578", tp="0.72625", sl="0.65115", coin="IDUSDT", size=301)
+# prueba = Order()
+# prueba.open_long("0.6578", tp="0.72625", sl="0.65115", coin="IDUSDT", size=301)
 
 """
 prueba = Order()

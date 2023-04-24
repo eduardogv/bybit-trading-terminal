@@ -36,7 +36,13 @@ class Order():
         return self.__account_balance
         
         
-        
+# Acá me doy cuenta que la moneda tiene que tener habilitado el hedge mode para que el positionIdx funcione.
+# Si no tienes habilitado el hedge mode para cierto PAR, no va a funcionar el positionIdx=1, tienes que usar el 0 que es one way position 
+# Tenemos que validar previamente que tipo de trading tienes para la moneda particular, y poder calcular
+# positionIdx :
+#   0 one-way mode position
+#   1 Buy side of hedge-mode position
+#   2 Sell side of hedge-mode position      
 
     def open_long(self, price, tp, sl,  coin="BTCUSDT", order_type="Limit", size=0.001):
         # Place an order on that USDT Perpetual
@@ -67,8 +73,8 @@ class Order():
             positionIdx=2,
         ))
 
-
 prueba = Order()
+prueba.open_long("0.6578", tp="0.72625", sl="0.65115", coin="IDUSDT", size=301)
 
 """
 prueba = Order()

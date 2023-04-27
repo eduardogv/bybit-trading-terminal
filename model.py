@@ -6,7 +6,8 @@ class Model():
 
     def __init__(self) -> None:
         self.__place_order = Order()
-        self.__calcultor = Calculator()
+        self.__calculator = Calculator()
+        self.__leverage = None
         self.__position_size = 0
         self.__coin_size = 0
         self.__equity = 0
@@ -14,31 +15,31 @@ class Model():
         self.__account_balance = 0
         
 
-    def place_order(self, entry):
-        entry = self.__entry
-        self.__account_balance = 0
-        self.calculate_pos()
-
-    
-    def calculate_pos(self):
-
-        # Calculate position values from tuple 
-        self.__position_size, self.__coin_size, self.__equity = self.__calcultor.sl_distance(200, 1, 20, 1.01, entry_price=self.__entry)
-
-    def place_order(self):
-        pass
+    def get_balance(self):
+        self.__account_balance = self.__place_order.get_account_balance()
+        print(self.__account_balance)
+        return float(self.__account_balance)
+        
         
 
+    def open_long(self, capital, coin, leverage, sl, entry):
+        
+        # Auto TP defined 7% above entry
+        takeprofit = round((107*entry/100), 2)
 
+        # Stop Loss calculated from input
+        stoploss = round(entry*((100-sl)/100), 2)
 
+        #Calculate Size using position_calculator module
+        position_sizes = self.__calculator.sl_distance(capital=capital, risk=1, leverage=leverage, sl=sl, entry_price=entry)
+        
+        # Place order
+        self.__place_order.open_long(price=entry, tp=takeprofit, sl=stoploss, coin=coin, order_type="Limit", size=round(position_sizes[1], 4) )
+        
+        
+    def open_short(self, coin, leverage, sl, entry):
 
-    
-    # def place_order(self):
-    #     self.__position_size = self.__calcultor.sl_distance(capital= 200 , risk= 1, leverage= 20, sl= 1.01)
-    #     print(self.__position_size)
-    #     return self.__position_size
-
-
-bb = Model()
-#bb.place_order()
-
+        #print("place_order clicked")
+        pass
+        
+        

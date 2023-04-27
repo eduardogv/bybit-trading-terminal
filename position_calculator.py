@@ -16,6 +16,7 @@ class Calculator():
 
     def sl_distance(self,capital, risk, leverage, sl, entry_price):
 
+
         # Define starting variables
         self.__capital = capital	
         risk = risk

@@ -33,13 +33,9 @@ class Order():
         # Get wallet balance of the Normal Trading Account
         self.__account_balance = self.__session.get_wallet_balance(accountType="CONTRACT")
         self.__account_balance = self.__account_balance["result"]["list"][0]["coin"][0]["equity"]
-        #print(f"El balance de su cuenta es: {self.__account_balance}.")
         return self.__account_balance
         
-# positionIdx :
-#   0 one-way mode position
-#   1 Buy side of hedge-mode position
-#   2 Sell side of hedge-mode position      
+
 
     def open_long(self, price, tp, sl,  coin="BTCUSDT", order_type="Limit", size=0.001):
         """
@@ -49,24 +45,37 @@ class Order():
         2 Sell side of hedge-mode position 
         """
         # Place an order on that USDT Perpetual
+
+        # if tp>price>sl:
+        #     print(self.__session.place_order(
+        #             category="linear",
+        #             symbol=coin,
+        #             side="Buy",
+        #             orderType=order_type,
+        #             qty = size,
+        #             price=price,
+        #             takeProfit=tp,
+        #             stopLoss=sl,
+        #             positionIdx=1
+        #         ))
         if tp>price>sl:
             try:
                 print(self.__session.place_order(
-                    category="linear",
-                    symbol=coin,
-                    side="Buy",
-                    orderType=order_type,
-                    qty = size,
-                    price=price,
-                    takeProfit=tp,
-                    stopLoss=sl,
-                    positionIdx=1
-                ))
+                        category="linear",
+                        symbol=coin,
+                        side="Buy",
+                        orderType=order_type,
+                        qty = size,
+                        price=price,
+                        takeProfit=tp,
+                        stopLoss=sl,
+                        positionIdx=1
+                    ))
             except InvalidRequestError as e:
-                print(repr(e))
-                print(e)
+                    print(repr(e))
+                    #print("Se ha tenido un error por el positionIdx")
         else:
-            print("Burro, el TP debe ser mayor que el entry")
+            print("No se cumple TP>Price>SL")
 
 
     def open_short(self, price, tp, sl,  coin="BTCUSDT", order_type="Limit", size=0.001):
@@ -76,7 +85,7 @@ class Order():
         1 Buy side of hedge-mode position
         2 Sell side of hedge-mode position 
         """
-
+        
         # Place an order on that USDT Perpetual
         if sl>price>tp:
             try:
@@ -91,13 +100,14 @@ class Order():
                     stopLoss=sl,
                     positionIdx=2,
                 ))
-            except :
-                print("ha ocurrido un error")
+            except InvalidRequestError as e:
+                print(repr(e))
+                print("Se ha tenido un error por el positionIdx")
         else:
-            print("burro tus entradas estan mal")
+            print("No se cumple SL>price>TP")
 
-prueba = Order()
-prueba.open_long("0.6578", tp="0.72625", sl="0.65115", coin="IDUSDT", size=301)
+#prueba = Order()
+#prueba.open_long("0.6578", tp="0.72625", sl="0.65115", coin="IDUSDT", size=301)
 
 """
 prueba = Order()
@@ -108,3 +118,6 @@ prueba.get_account_balance()
 
 """
 
+
+# Faltaría validar el modo hedge o one-way en cada symbol, vale la pena hacerlo?
+# Falta definir el leverage de cada posición

@@ -5,19 +5,35 @@ class Controller():
     def __init__(self, view, model):
         self.__view = view
         self.__model = model
-        self.connect_signals()
         self.coin = None
         self.sl = None
         self.leverage = None
         self.account_balance = None
         self.entry = None
+        self.connect_signals()
 
 
     def connect_signals(self):
-        self.__view.get_balance_button.clicked.connect(self.__model.get_balance)
+
+        # Press Get Balance button
+        self.__view.get_balance_button.clicked.connect(self.get_set_balance)
+        
+        # Press LONG button
         self.__view.place_long_button.clicked.connect(self.handle_input)
-        self.__view.place_long_button.clicked.connect(self.get_long_entry)
-        self.__view.place_short_button.clicked.connect(self.get_short_entry)
+        self.__view.place_long_button.clicked.connect(self.send_long_entry)
+
+        # Press SHORT button
+        self.__view.place_short_button.clicked.connect(self.handle_input)
+        self.__view.place_short_button.clicked.connect(self.send_short_entry)
+    
+
+    def get_set_balance(self):
+
+        # Get account balance
+        self.account_balance = self.__model.get_balance()
+
+        # Set accoount balance on GUI
+        self.__view.account_balance.setText(str(self.account_balance))
 
     
     def handle_input(self):
@@ -25,7 +41,6 @@ class Controller():
         #Get account balance
         self.account_balance = self.__model.get_balance()
         print (f"account balance: {self.account_balance}")
-        
         
         # Get symbol from gui
         self.coin = self.__view.coin.text()
@@ -43,14 +58,14 @@ class Controller():
         self.entry = float(self.entry)
 
 
-    def get_long_entry(self):
+    def send_long_entry(self):
 
         # Execute calculate position and place LONG order
         self.__model.open_long(capital=self.account_balance, coin=self.coin, leverage=self.leverage, sl=self.sl, entry=self.entry )
         print("long entry")
 
 
-    def get_short_entry(self):
+    def send_short_entry(self):
 
         # Execute calculate position and place SHORT order
         self.__model.open_short(capital=self.account_balance, coin=self.coin, leverage=self.leverage, sl=self.sl, entry=self.entry )

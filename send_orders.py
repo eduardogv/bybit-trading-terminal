@@ -45,19 +45,6 @@ class Order():
         2 Sell side of hedge-mode position 
         """
         # Place an order on that USDT Perpetual
-
-        # if tp>price>sl:
-        #     print(self.__session.place_order(
-        #             category="linear",
-        #             symbol=coin,
-        #             side="Buy",
-        #             orderType=order_type,
-        #             qty = size,
-        #             price=price,
-        #             takeProfit=tp,
-        #             stopLoss=sl,
-        #             positionIdx=1
-        #         ))
         if tp>price>sl:
             try:
                 print(self.__session.place_order(

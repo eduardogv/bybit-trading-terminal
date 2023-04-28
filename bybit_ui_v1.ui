@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>505</width>
-    <height>357</height>
+    <height>359</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -2258,7 +2258,7 @@
       <item row="2" column="1">
        <widget class="QLineEdit" name="stop_loss">
         <property name="text">
-         <string>1.66</string>
+         <string>0.88</string>
         </property>
        </widget>
       </item>
@@ -2706,7 +2706,7 @@
       <item row="3" column="1">
        <widget class="QLineEdit" name="entry">
         <property name="text">
-         <string>22000</string>
+         <string>27205</string>
         </property>
        </widget>
       </item>
@@ -4489,7 +4489,7 @@
      <x>0</x>
      <y>0</y>
      <width>505</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

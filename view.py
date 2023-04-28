@@ -16,3 +16,4 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     #     self.cover_qlabel.setPixmap(cover_img)
 
 
+

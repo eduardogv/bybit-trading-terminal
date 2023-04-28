@@ -1,6 +1,3 @@
-# Acá vamos a intentar crear una calculadora de posicion para tener claramente las posiciones de compra y venta 
-
-
 
 class Calculator():
 
@@ -39,7 +36,7 @@ class Calculator():
         return self.__position_size, self.__coin_size, self.__equity
     
 
-
+    # Not in using on this version:
     def long_entry_exit(self, capital, risk, leverage, entry, exit, sl):
         """
         This method is more precise if you are using TradingView SL tool

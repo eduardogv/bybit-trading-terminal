@@ -34,7 +34,6 @@ class Order():
         self.__account_balance = self.__session.get_wallet_balance(accountType="CONTRACT")
         self.__account_balance = self.__account_balance["result"]["list"][0]["coin"][0]["equity"]
         return self.__account_balance
-        
 
 
     def open_long(self, price, tp, sl,  coin="BTCUSDT", order_type="Limit", size=0.001):
@@ -58,6 +57,9 @@ class Order():
                         stopLoss=sl,
                         positionIdx=1
                     ))
+                result = "LONG order placed succesfully. Good luck degen!"
+                return result
+                
             except InvalidRequestError as e:
                     print(repr(e))
                     #print("Se ha tenido un error por el positionIdx")
@@ -87,23 +89,15 @@ class Order():
                     stopLoss=sl,
                     positionIdx=2,
                 ))
+                result = "SHORT order placed succesfully. Good luck degen!"
+                return result
+            
             except InvalidRequestError as e:
                 print(repr(e))
                 print("Se ha tenido un error por el positionIdx")
         else:
             print("No se cumple SL>price>TP")
 
-#prueba = Order()
-#prueba.open_long("0.6578", tp="0.72625", sl="0.65115", coin="IDUSDT", size=301)
-
-"""
-prueba = Order()
-prueba.open_long("26430.7", tp="29563", sl="25778", size=0.002)
-
-prueba.open_short("30149.86", tp="28981.33", sl="30980.38", size=0.003)
-prueba.get_account_balance()
-
-"""
 
 
 # Faltaría validar el modo hedge o one-way en cada symbol, vale la pena hacerlo?

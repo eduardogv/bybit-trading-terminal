@@ -16,6 +16,7 @@ class Model():
         self.stop_loss = 0
         self.__take_profit = 0
         self.__account_balance = 0
+        self.order_status = None
         
 
     def get_balance(self):
@@ -37,7 +38,8 @@ class Model():
         position_sizes = self.__calculator.sl_distance(capital=capital, risk=risk, leverage=leverage, sl=sl, entry_price=entry)
         
         # Place order
-        self.__place_order.open_long(price=entry, tp=takeprofit, sl=stoploss, coin=coin, order_type="Limit", size=round(position_sizes[1], 4) )
+        order = self.__place_order.open_long(price=entry, tp=takeprofit, sl=stoploss, coin=coin, order_type="Limit", size=round(position_sizes[1], 4) )
+        self.order_status = order
 
         # Long details
         self.position_size = round(position_sizes[0], 1) 
@@ -58,7 +60,8 @@ class Model():
         position_sizes = self.__calculator.sl_distance(capital=capital, risk=risk, leverage=leverage, sl=sl, entry_price=entry)
         
         # Place order
-        self.__place_order.open_short(price=entry, tp=takeprofit, sl=stoploss, coin=coin, order_type="Limit", size=round(position_sizes[1], 4) )
+        order = self.__place_order.open_short(price=entry, tp=takeprofit, sl=stoploss, coin=coin, order_type="Limit", size=round(position_sizes[1], 4) )
+        self.order_status = order
 
         # Short details
         self.position_size = round(position_sizes[0], 1) 

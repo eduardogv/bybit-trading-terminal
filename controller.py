@@ -88,4 +88,7 @@ class Controller():
         # Set Stop loss placed on GUI
         self.__view.stop_loss_palced.setText(str(self.__model.stop_loss))
 
+        # Set order status on UGI
+        self.__view.status_label.setText(str(self.__model.order_status))
+
 

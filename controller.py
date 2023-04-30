@@ -63,6 +63,8 @@ class Controller():
 
         # Execute calculate position and place LONG order
         self.__model.open_long(capital=self.account_balance, risk=self.risk, coin=self.coin, leverage=self.leverage, sl=self.sl, entry=self.entry )
+
+        # Update GUI
         self.set_placed_order_details()
 
 
@@ -71,6 +73,8 @@ class Controller():
 
         # Execute calculate position and place SHORT order
         self.__model.open_short(capital=self.account_balance, risk=self.risk, coin=self.coin, leverage=self.leverage, sl=self.sl, entry=self.entry )
+
+        # Update GUI
         self.set_placed_order_details()
 
 

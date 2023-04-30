@@ -2262,7 +2262,7 @@
       <item row="2" column="1">
        <widget class="QLineEdit" name="stop_loss">
         <property name="text">
-         <string>0.88</string>
+         <string>2.64</string>
         </property>
        </widget>
       </item>
@@ -2710,7 +2710,7 @@
       <item row="3" column="1">
        <widget class="QLineEdit" name="entry">
         <property name="text">
-         <string>27205</string>
+         <string>31302.5</string>
         </property>
        </widget>
       </item>

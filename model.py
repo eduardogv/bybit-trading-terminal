@@ -49,17 +49,15 @@ class Model():
         # print(f"Stop Loss = {stoploss}")
         # print(f"Size = {round(position_sizes[1], 4)}")
 
-        
-        
     def open_short(self, capital, coin, leverage, sl, entry):
 
         # Auto TP defined 5% above entry
         takeprofit = round((95*entry/100), 2)
-        takeprofit = self.__auto_tp
+        self.auto_tp = takeprofit  
 
         # Stop Loss calculated from input
         stoploss = round(entry+(entry*sl/100), 2)
-        stoploss = self.__stop_loss
+        self.stop_loss = stoploss
 
         #Calculate Size using position_calculator module
         position_sizes = self.__calculator.sl_distance(capital=capital, risk=1, leverage=leverage, sl=sl, entry_price=entry)
@@ -67,11 +65,9 @@ class Model():
         # Place order
         self.__place_order.open_short(price=entry, tp=takeprofit, sl=stoploss, coin=coin, order_type="Limit", size=round(position_sizes[1], 4) )
 
-        # Set equity and position size 
-        self.__equity = position_sizes[2]
-        self.__position_size = position_sizes[0]
-        self.__coin_size = position_sizes[1]
-        #print("place_order clicked")
+        # Short details
+        self.position_size = round(position_sizes[0], 1) 
+        self.equity = round(position_sizes[2], 1) 
         
         
         

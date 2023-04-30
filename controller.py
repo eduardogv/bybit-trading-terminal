@@ -65,7 +65,6 @@ class Controller():
         self.__model.open_long(capital=self.account_balance, coin=self.coin, leverage=self.leverage, sl=self.sl, entry=self.entry )
         #print(self.__model.auto_tp)
         #print("long entry")
-        time.sleep(4)
         self.set_placed_order_details()
 
 
@@ -75,6 +74,7 @@ class Controller():
         # Execute calculate position and place SHORT order
         self.__model.open_short(capital=self.account_balance, coin=self.coin, leverage=self.leverage, sl=self.sl, entry=self.entry )
         #print("short entry")
+        self.set_placed_order_details()
 
 
     def set_placed_order_details(self):
@@ -90,3 +90,5 @@ class Controller():
 
         # Set Stop loss placed on GUI
         self.__view.stop_loss_palced.setText(str(self.__model.stop_loss))
+
+

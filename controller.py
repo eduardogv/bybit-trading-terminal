@@ -31,7 +31,6 @@ class Controller():
 
         # Get account balance
         self.account_balance = self.__model.get_balance()
-        #print (f"account balance: {self.account_balance}")
 
         # Set accoount balance on GUI
         self.__view.account_balance.setText(str(self.account_balance))
@@ -39,10 +38,6 @@ class Controller():
 
     def handle_input(self):
 
-        #Get account balance (parece que no lo necesito)
-        # self.account_balance = self.__model.get_balance()
-        # print (f"account balance: {self.account_balance}")
-        
         # Get symbol from gui
         self.coin = self.__view.coin.text()
 
@@ -63,8 +58,6 @@ class Controller():
 
         # Execute calculate position and place LONG order
         self.__model.open_long(capital=self.account_balance, coin=self.coin, leverage=self.leverage, sl=self.sl, entry=self.entry )
-        #print(self.__model.auto_tp)
-        #print("long entry")
         self.set_placed_order_details()
 
 
@@ -73,7 +66,6 @@ class Controller():
 
         # Execute calculate position and place SHORT order
         self.__model.open_short(capital=self.account_balance, coin=self.coin, leverage=self.leverage, sl=self.sl, entry=self.entry )
-        #print("short entry")
         self.set_placed_order_details()
 
 

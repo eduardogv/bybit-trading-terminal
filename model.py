@@ -42,12 +42,7 @@ class Model():
         # Long details
         self.position_size = round(position_sizes[0], 1) 
         self.equity = round(position_sizes[2], 1) 
-        
-        # prints de prueba
-        # print(f"Entry = {entry}")
-        # print(f"Take Profit = {takeprofit}")
-        # print(f"Stop Loss = {stoploss}")
-        # print(f"Size = {round(position_sizes[1], 4)}")
+
 
     def open_short(self, capital, coin, leverage, sl, entry):
 

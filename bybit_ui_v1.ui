@@ -914,7 +914,11 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLineEdit" name="account_balance"/>
+       <widget class="QLineEdit" name="account_balance">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -4489,7 +4493,7 @@
      <x>0</x>
      <y>0</y>
      <width>505</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

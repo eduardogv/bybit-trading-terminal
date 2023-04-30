@@ -22,15 +22,15 @@ class Calculator():
 
         #Calculate pos based on risk and SL
         self.__position_size = (capital*risk/100)/(sl/100)
-        print(f"Pos size USDT: {self.__position_size}")
+        #print(f"Pos size USDT: {self.__position_size}")
 
         # Calculate position size in coin size:
         self.__coin_size = self.__position_size/self.__entry
-        print(f"Coin size: {self.__coin_size}")
+        #print(f"Coin size: {self.__coin_size}")
 
         # Calculate equity
         self.__equity = self.__position_size/self.__leverage
-        print (f"Equity USDT: {self.__equity}")
+        #print (f"Equity USDT: {self.__equity}")
 
         # Returns a tuple with the sizes (USDT, coin and equity)
         return self.__position_size, self.__coin_size, self.__equity

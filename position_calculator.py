@@ -51,6 +51,19 @@ class Calculator():
         return self.__position_size
 
 
+
+    def fees_calculator(self):
+
+        # Bybit 0.01% Maker Fee
+        maker_fee = self.__position_size*0.01/100
+
+        # Bybit 0.06% Taker Fee
+        taker_fee = self.__position_size*0.06/100
+
+        return round(maker_fee,2) ,round(taker_fee, 2)
+
+
+
 # aa = Calculator()
 # aa.sl_distance(200, 1, 20, 1.01, entry_price=0.6578 )
 

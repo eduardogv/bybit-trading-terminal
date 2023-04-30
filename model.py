@@ -17,6 +17,9 @@ class Model():
         self.__take_profit = 0
         self.__account_balance = 0
         self.order_status = None
+        self.fees = 0
+        self.fees_winning_trade = 0
+        self.breakeven_price = None
         
 
     def get_balance(self):
@@ -45,6 +48,8 @@ class Model():
         self.position_size = round(position_sizes[0], 1) 
         self.equity = round(position_sizes[2], 1) 
 
+        
+
 
     def open_short(self, capital, risk, coin, leverage, sl, entry):
 
@@ -66,6 +71,13 @@ class Model():
         # Short details
         self.position_size = round(position_sizes[0], 1) 
         self.equity = round(position_sizes[2], 1) 
+
+        # Fees calculation assuming SL gets hit
+        fees = self.__calculator.fees_calculator()
+        self.fees = fees[0] + fees[1] 
+        self.breakeven_price = entry - self.fees
+        self.fees_winning_trade = fees[0] + fees[0]
+
         
         
         

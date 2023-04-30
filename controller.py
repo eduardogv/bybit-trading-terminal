@@ -68,7 +68,6 @@ class Controller():
         self.set_placed_order_details()
 
 
-
     def send_short_entry(self):
 
         # Execute calculate position and place SHORT order
@@ -92,7 +91,17 @@ class Controller():
         # Set Stop loss placed on GUI
         self.__view.stop_loss_palced.setText(str(self.__model.stop_loss))
 
-        # Set order status on UGI
+        # Set order status on GUI
         self.__view.status_label.setText(str(self.__model.order_status))
+
+        # Set breakeven price on GUI
+        self.__view.breakeven.setText(str(self.__model.breakeven_price))
+
+        # Set Winning Trade Fees on GUI
+        self.__view.w_trade_fee.setText(str(self.__model.fees_winning_trade))
+
+        # Set Losing Trade Fees on GUI
+        self.__view.L_trade_fee.setText(str(self.__model.fees))
+
 
 

@@ -10,6 +10,7 @@ class Controller():
         self.leverage = None
         self.account_balance = None
         self.entry = None
+        self.risk = None
         self.connect_signals()
 
 
@@ -49,6 +50,10 @@ class Controller():
         self.sl = self.__view.stop_loss.text()
         self.sl = float(self.sl)
 
+        # Get Risk from GUI
+        self.risk = self.__view.risk_unit.text()
+        self.risk = float(self.risk)
+
         # Get entry price
         self.entry = self.__view.entry.text()
         self.entry = float(self.entry)
@@ -57,7 +62,7 @@ class Controller():
     def send_long_entry(self):
 
         # Execute calculate position and place LONG order
-        self.__model.open_long(capital=self.account_balance, coin=self.coin, leverage=self.leverage, sl=self.sl, entry=self.entry )
+        self.__model.open_long(capital=self.account_balance, risk=self.risk, coin=self.coin, leverage=self.leverage, sl=self.sl, entry=self.entry )
         self.set_placed_order_details()
 
 
@@ -65,7 +70,7 @@ class Controller():
     def send_short_entry(self):
 
         # Execute calculate position and place SHORT order
-        self.__model.open_short(capital=self.account_balance, coin=self.coin, leverage=self.leverage, sl=self.sl, entry=self.entry )
+        self.__model.open_short(capital=self.account_balance, risk=self.risk, coin=self.coin, leverage=self.leverage, sl=self.sl, entry=self.entry )
         self.set_placed_order_details()
 
 

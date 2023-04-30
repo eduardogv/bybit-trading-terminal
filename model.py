@@ -23,7 +23,7 @@ class Model():
         return float(self.__account_balance)
     
 
-    def open_long(self, capital, coin, leverage, sl, entry):
+    def open_long(self, capital, risk, coin, leverage, sl, entry):
         
         # Auto TP defined 7% above entry
         takeprofit = round((107*entry/100), 2)
@@ -34,7 +34,7 @@ class Model():
         self.stop_loss = stoploss
 
         #Calculate Size using position_calculator (pos size, coin size, equity size)
-        position_sizes = self.__calculator.sl_distance(capital=capital, risk=1, leverage=leverage, sl=sl, entry_price=entry)
+        position_sizes = self.__calculator.sl_distance(capital=capital, risk=risk, leverage=leverage, sl=sl, entry_price=entry)
         
         # Place order
         self.__place_order.open_long(price=entry, tp=takeprofit, sl=stoploss, coin=coin, order_type="Limit", size=round(position_sizes[1], 4) )
@@ -44,7 +44,7 @@ class Model():
         self.equity = round(position_sizes[2], 1) 
 
 
-    def open_short(self, capital, coin, leverage, sl, entry):
+    def open_short(self, capital, risk, coin, leverage, sl, entry):
 
         # Auto TP defined 5% above entry
         takeprofit = round((95*entry/100), 2)
@@ -55,7 +55,7 @@ class Model():
         self.stop_loss = stoploss
 
         #Calculate Size using position_calculator module
-        position_sizes = self.__calculator.sl_distance(capital=capital, risk=1, leverage=leverage, sl=sl, entry_price=entry)
+        position_sizes = self.__calculator.sl_distance(capital=capital, risk=risk, leverage=leverage, sl=sl, entry_price=entry)
         
         # Place order
         self.__place_order.open_short(price=entry, tp=takeprofit, sl=stoploss, coin=coin, order_type="Limit", size=round(position_sizes[1], 4) )

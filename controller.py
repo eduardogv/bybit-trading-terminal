@@ -35,6 +35,20 @@ class Controller():
         # Set accoount balance on GUI
         self.__view.account_balance.setText(str(self.account_balance))
 
+
+    def set_placed_order_details(self):
+
+        # Set position size USDT on GUI
+        self.__view.position_size.setText(str(self.account_balance))
+        
+        # Set equity USDT on GUI
+        self.__view.equity.setText(str(self.account_balance))
+
+        # Set Auto TP on GUI
+        self.__view.auto_tp.setText(str(self.__model.auto_tp))
+
+        # Set Stop loss placed on GUI
+        self.__view.position_size.setText(str(self.account_balance))
     
     def handle_input(self):
 

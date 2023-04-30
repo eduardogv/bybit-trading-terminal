@@ -7,11 +7,14 @@ class Model():
     def __init__(self) -> None:
         self.__place_order = Order()
         self.__calculator = Calculator()
-        self.__leverage = None
+        self.__leverage = 0
         self.__position_size = 0
         self.__coin_size = 0
         self.__equity = 0
         self.__entry = 0
+        self.auto_tp = 0
+        self.__stop_loss = 0
+        self.__take_profit = 0
         self.__account_balance = 0
         
 
@@ -25,9 +28,11 @@ class Model():
         
         # Auto TP defined 7% above entry
         takeprofit = round((107*entry/100), 2)
+        takeprofit = self.auto_tp
 
         # Stop Loss calculated from input
         stoploss = round(entry*((100-sl)/100), 2)
+        stoploss = self.__stop_loss
 
         #Calculate Size using position_calculator module
         position_sizes = self.__calculator.sl_distance(capital=capital, risk=1, leverage=leverage, sl=sl, entry_price=entry)
@@ -40,15 +45,22 @@ class Model():
 
         # Auto TP defined 5% above entry
         takeprofit = round((95*entry/100), 2)
+        takeprofit = self.__auto_tp
 
         # Stop Loss calculated from input
         stoploss = round(entry+(entry*sl/100), 2)
+        stoploss = self.__stop_loss
 
         #Calculate Size using position_calculator module
         position_sizes = self.__calculator.sl_distance(capital=capital, risk=1, leverage=leverage, sl=sl, entry_price=entry)
         
         # Place order
         self.__place_order.open_short(price=entry, tp=takeprofit, sl=stoploss, coin=coin, order_type="Limit", size=round(position_sizes[1], 4) )
+
+        # Set equity and position size 
+        self.__equity = position_sizes[2]
+        self.__position_size = position_sizes[0]
+        self.__coin_size = position_sizes[1]
         
         print("place_order clicked")
         

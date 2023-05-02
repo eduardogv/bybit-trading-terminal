@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>BybitTradingTool</class>
+ <widget class="QMainWindow" name="BybitTradingTool">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -958,7 +958,7 @@
        </widget>
       </item>
       <item row="0" column="2">
-       <widget class="QLabel" name="placeholder_label">
+       <widget class="QLabel" name="autpotp_label">
         <property name="palette">
          <palette>
           <active>
@@ -1385,12 +1385,12 @@
          <bool>true</bool>
         </property>
         <property name="text">
-         <string>placeholder</string>
+         <string>Auto TP (%)</string>
         </property>
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="QLineEdit" name="placeholder">
+       <widget class="QLineEdit" name="autotp">
         <property name="text">
          <string/>
         </property>

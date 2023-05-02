@@ -29,8 +29,8 @@ class Model():
 
     def open_long(self, capital, risk, coin, leverage, sl, entry):
         
-        # Auto TP defined 7% above entry
-        takeprofit = round((107*entry/100), 2)
+        # Auto TP defined 3% above entry
+        takeprofit = round((103*entry/100), 2)
         self.auto_tp = takeprofit        
 
         # Stop Loss calculated from input
@@ -53,8 +53,8 @@ class Model():
 
     def open_short(self, capital, risk, coin, leverage, sl, entry):
 
-        # Auto TP defined 5% above entry
-        takeprofit = round((95*entry/100), 2)
+        # Auto TP defined 3% below entry
+        takeprofit = round((97*entry/100), 2)
         self.auto_tp = takeprofit  
 
         # Stop Loss calculated from input
@@ -75,7 +75,7 @@ class Model():
         # Fees calculation assuming SL gets hit
         fees = self.__calculator.fees_calculator()
         self.fees = fees[0] + fees[1] 
-        self.breakeven_price = entry - self.fees
+        self.breakeven_price = round((entry - self.fees), 2)
         self.fees_winning_trade = fees[0] + fees[0]
 
         

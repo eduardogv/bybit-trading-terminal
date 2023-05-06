@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>495</width>
-    <height>399</height>
+    <width>572</width>
+    <height>442</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -486,7 +486,7 @@
         <item>
          <widget class="QLineEdit" name="account_balance">
           <property name="text">
-           <string/>
+           <string>200</string>
           </property>
          </widget>
         </item>
@@ -6709,7 +6709,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>495</width>
+     <width>572</width>
      <height>21</height>
     </rect>
    </property>

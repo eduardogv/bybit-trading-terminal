@@ -39,6 +39,9 @@ class Controller():
 
     def handle_input(self):
 
+        # Get Accoun Balance from GUI if button not clicked
+        self.account_balance = float(self.__view.account_balance.text())
+
         # Get symbol from gui
         self.coin = self.__view.coin.text()
 

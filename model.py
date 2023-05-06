@@ -48,6 +48,12 @@ class Model():
         self.position_size = round(position_sizes[0], 1) 
         self.equity = round(position_sizes[2], 1) 
 
+        # Fees calculation assuming SL gets hit
+        fees = self.__calculator.fees_calculator()
+        self.fees = round(fees[0] + fees[1] , 2)
+        self.breakeven_price = round((entry - self.fees), 2)
+        self.fees_winning_trade = fees[0] + fees[0]
+
         
 
 
@@ -74,7 +80,7 @@ class Model():
 
         # Fees calculation assuming SL gets hit
         fees = self.__calculator.fees_calculator()
-        self.fees = fees[0] + fees[1] 
+        self.fees = round(fees[0] + fees[1] ,2 )
         self.breakeven_price = round((entry - self.fees), 2)
         self.fees_winning_trade = fees[0] + fees[0]
 

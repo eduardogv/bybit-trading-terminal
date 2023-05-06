@@ -1,8 +1,8 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
-from bybit_ui_v1 import Ui_MainWindow
+from bybit_ui_v1 import Ui_BybitTradingTool
 
 
-class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
+class MainWindow(QtWidgets.QMainWindow, Ui_BybitTradingTool):
 #class MainWindow(Ui_MainWindow):
 
     def __init__(self):

@@ -6,7 +6,7 @@ from keys import api_key, secret_key
 api_key_imported = api_key
 secret_key_imported = secret_key
 
-class Position():
+class Positions():
 
     def __init__(self):    
 
@@ -21,15 +21,16 @@ class Position():
 
 
     def get_total_positions(self):
-        response = self.__session.get_open_orders(
+        response = self.__session.get_positions(
         category="linear",
-        symbol="BNBUSDT",
+        #symbol="BNBUSDT",
+        settleCoin = "USDT"
         )
 
         print(response)
 
 
-aa = Position()
+aa = Positions()
 aa.get_total_positions()
 
 

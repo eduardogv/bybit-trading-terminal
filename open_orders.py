@@ -27,7 +27,7 @@ class Orders():
             #symbol = "BTCUSDT",
             openOnly=0,
             limit=50,
-            settleCoin = "BTCUSDT"
+            settleCoin = "USDT"
         )
 
         print(response)
@@ -35,7 +35,6 @@ class Orders():
 
 aa = Orders()
 aa.get_open_orders()
-
 
 
 

@@ -1,0 +1,11 @@
+
+
+- Hacer que se pueda operar sin presionar previamente el account balance,
+o sea que se opere con el texto que esté en la pantalla. DONE
+
+
+- Mostrar el AutoTP
+- Mostrar posiciones abiertas con un botón, precio de entrada, SL y TP, size
+- Hacer que se actualice esta lista de posiciones cada vez que presiones el botón det balance
+- Hacer que se actualice esta lista de posiciones cada vez que pones una order.
+

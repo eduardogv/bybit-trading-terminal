@@ -29,8 +29,8 @@ class Model():
 
     def open_long(self, capital, risk, coin, leverage, sl, entry):
         
-        # Auto TP defined 3% above entry
-        takeprofit = round((103*entry/100), 2)
+        # Auto TP defined 2% above entry
+        takeprofit = round((102*entry/100), 2)
         self.auto_tp = takeprofit        
 
         # Stop Loss calculated from input
@@ -59,8 +59,8 @@ class Model():
 
     def open_short(self, capital, risk, coin, leverage, sl, entry):
 
-        # Auto TP defined 3% below entry
-        takeprofit = round((97*entry/100), 2)
+        # Auto TP defined 2% below entry
+        takeprofit = round((98*entry/100), 2)
         self.auto_tp = takeprofit  
 
         # Stop Loss calculated from input

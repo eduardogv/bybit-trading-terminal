@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>840</width>
+    <width>1152</width>
     <height>778</height>
    </rect>
   </property>
@@ -30,18 +30,48 @@
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>180</y>
-      <width>151</width>
+      <x>560</x>
+      <y>340</y>
+      <width>561</width>
       <height>131</height>
      </rect>
     </property>
+    <column>
+     <property name="text">
+      <string>Symbol</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Direction</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Entry</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Take Profit </string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Breakeven Price</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Move to BE</string>
+     </property>
+    </column>
    </widget>
    <widget class="QTabWidget" name="oders_and_positions">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>480</y>
+      <x>10</x>
+      <y>490</y>
       <width>521</width>
       <height>221</height>
      </rect>
@@ -16129,7 +16159,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>840</width>
+     <width>1152</width>
      <height>21</height>
     </rect>
    </property>

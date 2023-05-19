@@ -30,11 +30,11 @@ class Orders():
             settleCoin = "USDT"
         )
 
-        print(response)
+        orders = response["result"]["list"]
+        #print(orders)
+        return orders
 
-
-aa = Orders()
-aa.get_open_orders()
-
-
-
+def get_orders():
+    instance = Orders()
+    a = instance.get_open_orders()
+    return a

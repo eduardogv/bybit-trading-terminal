@@ -91,8 +91,11 @@ class Controller():
         self.__view.set_orders(orders_df)
 
         # Execute  update positions
-        positions_df = None
-
+        try:
+            positions_df = self.__model.update_positions()
+            self.__view.set_positions(positions_df)
+        except:
+            print("no data for positions")
 
     def set_placed_order_details(self):
 

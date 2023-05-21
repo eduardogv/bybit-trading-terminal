@@ -20,16 +20,15 @@ class Positions():
         self.__account_balance = "0"
 
 
-    def get_total_positions(self):
+    def get_open_positions(self):
         response = self.__session.get_positions(
         category="linear",
         #symbol="BNBUSDT",
         settleCoin = "USDT"
         )
 
-        print(response)
+        #print(response)
+        positions = response["result"]["list"]
+        return positions
 
-
-aa = Positions()
-aa.get_total_positions()
 

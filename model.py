@@ -2,6 +2,7 @@ from position_calculator import Calculator
 from send_orders import Order
 from controller import Controller
 from open_orders import Orders
+from open_positions import Positions
 import pandas as pd
 
 class Model():
@@ -91,11 +92,26 @@ class Model():
 
         # Get orders and transform to pandas df
         orders_instance = Orders()
-        orders = orders_instance.get_open_orders()
-        df = pd.DataFrame.from_dict(orders)
-        df = df[["symbol", "price", "side", "takeProfit", "stopLoss"]]
-        print(df)
-        return df
+
+        # Check if there are orders and convert to dataframe
+        if orders_instance is not None:
+
+            orders = orders_instance.get_open_orders()
+            df = pd.DataFrame.from_dict(orders)
+            df = df[["symbol", "price", "side", "takeProfit", "stopLoss"]]
+            print(df)
+            return df
+
     
     def update_positions(self):
-        pass
+
+        # Get open positions and transform to df
+        positions_instance = Positions()
+
+        # Check if there are positions and convert to dataframe
+        if positions_instance is not None:
+
+            positions = positions_instance.get_open_positions()
+            df = pd.DataFrame.from_dict(positions)
+            df = df[["symbol", "avgPrice", "side", "stopLoss"]]
+            return df

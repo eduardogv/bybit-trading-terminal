@@ -1,6 +1,8 @@
 from position_calculator import Calculator
 from send_orders import Order
 from controller import Controller
+from open_orders import Orders
+import pandas as pd
 
 class Model():
 
@@ -85,5 +87,15 @@ class Model():
         self.fees_winning_trade = fees[0] + fees[0]
 
         
-        
-        
+    def update_orders(self):
+
+        # Get orders and transform to pandas df
+        orders_instance = Orders()
+        orders = orders_instance.get_open_orders()
+        df = pd.DataFrame.from_dict(orders)
+        df = df[["symbol", "price", "side", "takeProfit", "stopLoss"]]
+        print(df)
+        return df
+    
+    def update_positions(self):
+        pass

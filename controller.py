@@ -26,6 +26,10 @@ class Controller():
         # Press SHORT button
         self.__view.place_short_button.clicked.connect(self.handle_input)
         self.__view.place_short_button.clicked.connect(self.send_short_entry)
+
+        # Press UPDATE button
+        self.__view.upate_orders_button.clicked.connect(self.handle_input)
+        self.__view.upate_orders_button.clicked.connect(self.update_orders_and_positions)
     
 
     def get_set_balance(self):
@@ -78,6 +82,16 @@ class Controller():
 
         # Update GUI
         self.set_placed_order_details()
+
+
+    def update_orders_and_positions(self):
+
+        # Execute update orders 
+        orders_df = self.__model.update_orders()
+        self.__view.set_orders(orders_df)
+
+        # Execute  update positions
+        positions_df = None
 
 
     def set_placed_order_details(self):

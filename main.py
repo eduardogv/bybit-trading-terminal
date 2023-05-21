@@ -3,6 +3,7 @@ import sys
 from controller import Controller
 from PyQt6 import QtWidgets
 from view import MainWindow
+from view import PandasModel
 from model import Model
 
 

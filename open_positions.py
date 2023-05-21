@@ -33,6 +33,3 @@ class Positions():
 aa = Positions()
 aa.get_total_positions()
 
-
-
-

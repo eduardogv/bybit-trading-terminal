@@ -1,5 +1,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from ui.bybit_ui_v3 import Ui_MainWindow
+from PyQt6.QtCore import QAbstractTableModel, Qt
+
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -9,12 +11,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         super().__init__()
         #Se configura la GUI usando Qt designer
         self.setupUi(self)
+    
+    def set_orders(self, data):
+        self.pandas_model = PandasModel(data)
+        self.orders_table.setModel(self.pandas_model)
+
 
     # Método que muestra el cover en la GUI
     # def cover_img(self, image):
     #     cover_img = QtGui.QPixmap(image)
     #     self.cover_qlabel.setPixmap(cover_img)
-
 
 
     # Method to set columns width
@@ -33,9 +39,32 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #self.tabla.setRowCount(rows)
         pass
 
-    # Method to print data in positions table
+    
 
 
-    # Method to print data in orders table
+class PandasModel(QAbstractTableModel):
+    
+    def __init__(self, data):
+        QAbstractTableModel.__init__(self)
+        self._data = data
 
+    def rowCount(self, parent):
+        return self._data.shape[0]
 
+    def columnCount(self, parent):
+        return self._data.shape[1]
+
+    def data(self, index, role):
+        if role == Qt.ItemDataRole.DisplayRole:
+            return str(self._data.iloc[index.row(), index.column()])
+
+        return None
+
+    def headerData(self, section, orientation, role):
+        if role == Qt.ItemDataRole.DisplayRole:
+            if orientation == Qt.Orientation.Horizontal:
+                return str(self._data.columns[section])
+            elif orientation == Qt.Orientation.Vertical:
+                return str(self._data.index[section])
+
+        return None

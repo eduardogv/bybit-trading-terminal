@@ -1,8 +1,12 @@
 import sys
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableView
 from PyQt6.QtCore import QAbstractTableModel, Qt
+from PyQt6.QtGui import QStandardItemModel
+from PyQt6.QtWidgets import QApplication, QTableView, QWidget, QVBoxLayout, QPushButton, QStyledItemDelegate, QItemDelegate
+
 import pandas as pd
 from open_orders import get_orders
+
 
 class PandasModel(QAbstractTableModel):
     
@@ -32,6 +36,41 @@ class PandasModel(QAbstractTableModel):
         return None
 
 
+# Esta clase se usa en el metodo que me trae lag
+class ButtonDelegate(QItemDelegate):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+    def paint(self, painter, option, index):
+        if index.column() == 0:
+            button = QPushButton("Botón", self.parent())
+            button.setGeometry(option.rect)
+            button.show()
+
+        else:
+            super().paint(painter, option, index)
+
+
+# Este es el metodo bueno
+class ButtonDelegate(QItemDelegate):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.button = QPushButton("Botón", self.parent())
+
+    def createEditor(self, parent, option, index):
+        return self.button
+
+    def setEditorData(self, editor, index):
+        pass
+
+    def setModelData(self, editor, model, index):
+        pass
+
+    def updateEditorGeometry(self, editor, option, index):
+        editor.setGeometry(option.rect)
+
+
+
 if __name__ == '__main__':
     # Cargar los datos en un DataFrame de pandas
     #data = pd.DataFrame({'Columna1': [1, 2, 3], 'Columna2': ['A', 'B', 'C']})
@@ -55,6 +94,10 @@ if __name__ == '__main__':
     # Crear una instancia de QTableView y asignar el modelo a la tabla
     table = QTableView()
     table.setModel(model) # AQUI SE ASIGNA EL MODELO AL TABLEVIEW
+    table.setItemDelegateForColumn(2, ButtonDelegate(table)) # BOTON
+    
+    # Metodo que me trae lag a la UI
+    #table.setItemDelegateForColumn(0, ButtonDelegate(table))
 
     # Establecer la tabla como el widget central de la ventana
     window.setCentralWidget(table)

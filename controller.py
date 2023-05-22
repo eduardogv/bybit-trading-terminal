@@ -87,8 +87,11 @@ class Controller():
     def update_orders_and_positions(self):
 
         # Execute update orders 
-        orders_df = self.__model.update_orders()
-        self.__view.set_orders(orders_df)
+        try:
+            orders_df = self.__model.update_orders()
+            self.__view.set_orders(orders_df)
+        except:
+            print("no data for orders")
 
         # Execute  update positions
         try:
@@ -96,6 +99,7 @@ class Controller():
             self.__view.set_positions(positions_df)
         except:
             print("no data for positions")
+
 
     def set_placed_order_details(self):
 

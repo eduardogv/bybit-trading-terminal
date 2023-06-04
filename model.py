@@ -1,8 +1,8 @@
-from position_calculator import Calculator
-from send_orders import Order
+from core.position_calculator import Calculator
+from core.send_orders import Order
 from controller import Controller
-from open_orders import Orders
-from open_positions import Positions
+from core.open_orders import Orders
+from core.open_positions import Positions
 import pandas as pd
 
 class Model():

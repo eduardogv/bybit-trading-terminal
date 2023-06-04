@@ -11,6 +11,7 @@ class Controller():
         self.account_balance = None
         self.entry = None
         self.risk = None
+        self.tab_index = None
         self.connect_signals()
 
 
@@ -46,10 +47,14 @@ class Controller():
         # Get Accoun Balance from GUI if button not clicked
         self.account_balance = float(self.__view.account_balance.text())
 
-        # Get symbol from gui
+        # Get tab index from GUI
+        self.tab_index = self.__view.tabWidget.currentIndex()
+        print (type(self.tab_index))
+
+        # Get symbol from GUI
         self.coin = self.__view.coin.text()
 
-        # Get Leverage from gui
+        # Get Leverage from GUI
         self.leverage = self.__view.leverage.text()
         self.leverage = float(self.leverage)
 
@@ -68,8 +73,11 @@ class Controller():
 
     def send_long_entry(self):
 
-        # Execute calculate position and place LONG order
-        self.__model.open_long(capital=self.account_balance, risk=self.risk, coin=self.coin, leverage=self.leverage, sl=self.sl, entry=self.entry )
+        # Execute calculate position and place LONG order Quick Mode
+        if self.tab_index == 0:
+            self.__model.open_long(capital=self.account_balance, risk=self.risk, coin=self.coin, leverage=self.leverage, sl=self.sl, entry=self.entry )
+        if self.tab_index == 1:
+            print("Estas en modo normal")
 
         # Update GUI
         self.set_placed_order_details()

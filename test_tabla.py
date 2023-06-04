@@ -5,7 +5,7 @@ from PyQt6.QtGui import QStandardItemModel
 from PyQt6.QtWidgets import QApplication, QTableView, QWidget, QVBoxLayout, QPushButton, QStyledItemDelegate, QItemDelegate
 
 import pandas as pd
-from open_orders import get_orders
+from core.open_orders import get_orders
 
 
 class PandasModel(QAbstractTableModel):

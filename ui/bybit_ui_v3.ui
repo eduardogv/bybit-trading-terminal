@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>574</width>
-    <height>837</height>
+    <width>575</width>
+    <height>888</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -523,7 +523,7 @@
         <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tab_1">
            <attribute name="title">
@@ -16180,8 +16180,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>574</width>
-     <height>21</height>
+     <width>575</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>

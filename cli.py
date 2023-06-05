@@ -1,20 +1,16 @@
 from core.position_calculator import Calculator
 from core.send_orders import Order
 
+
 # Initialize classes
 order_class = Order()
 calculator_class = Calculator()
 
 
-
-
-
 def main():
     
-
-
     # initialize global variables
-    account_balance = float(200)
+    account_balance = float(202)
     choice = 0
     risk = float(1)
 

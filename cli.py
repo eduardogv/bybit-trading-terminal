@@ -93,19 +93,19 @@ def main():
 
         # 3) Open Short
         if choice == 3:
-            choice_2 = 0
-            while choice_2 != 4: 
+            choice_3 = 0
+            while choice_3 != 4: 
                 print("-------------------------------------")
-                print("*** Open LONG ***")
+                print("*** Open SHORT ***")
                 print("l) Enter Position Parameters")
                 print("2) Check Parameters")
                 print("3) Enter Position") 
                 print("4) Go Back to Main Menu")
-                choice_2  = int(input())
+                choice_3  = int(input())
                 print("-------------------------------------")
                 
                 # 1) Enter position parameters
-                if choice_2 == 1:
+                if choice_3 == 1:
                     coin = input("Enter Coin: ")
                     coin = coin.upper()+ "USDT"
                     entry = float(input("Enter entry price: "))
@@ -113,14 +113,14 @@ def main():
                     take_profit = float(input("Enter Take Profit: "))
 
                 # 2) Check Parameters      
-                elif choice_2 == 2:
+                elif choice_3 == 2:
                     print ("** Your positions parameters**")
                     print (coin)
                 
                 # 3) Enter Position
-                elif choice_2 == 3:
+                elif choice_3 == 3:
                     try:
-                        new_order = open_long(capital=account_balance, risk=risk, coin=coin, leverage=20, stoploss_distance=stop_loss_distance, tp_price=take_profit, entry=entry)
+                        new_order = open_short(capital=account_balance, risk=risk, coin=coin, leverage=20, stoploss_distance=stop_loss_distance, tp_price=take_profit, entry=entry)
                     except:
                         print("Error, something happenned")            
         
@@ -153,17 +153,27 @@ def open_long(capital, risk, coin, leverage, stoploss_distance, tp_price, entry)
         # Place order
         order = order_class.open_long(price=entry, tp=tp_price, sl=stoploss_price, coin=coin, order_type="Limit", size=round(position_sizes[1], 4) )
 
-        # # Long details
-        # position_size = round(position_sizes[0], 1) 
-        # equity = round(position_sizes[2], 1) 
-
-        # # Fees calculation assuming SL gets hit
-        # fees = calculator_class.fees_calculator()
-        # self.fees = round(fees[0] + fees[1] , 2)
-        # self.breakeven_price = round((entry - self.fees), 2)
-        # self.fees_winning_trade = fees[0] + fees[0]
 
 
+
+def open_short(capital, risk, coin, leverage, stoploss_distance, tp_price, entry):
+                
+        # Take Profit from input  
+
+        # Stop Loss calculated from input
+        stoploss_price = round(entry+(entry*stoploss_distance/100), 2)
+
+        #Calculate Size using position_calculator (pos size, coin size, equity size)
+        position_sizes = calculator_class.sl_distance(capital=capital, risk=risk, leverage=leverage, sl=stoploss_distance, entry_price=entry)
+        print("capital: "+ str(capital))
+        print("risk: "+ str(risk))
+        print("leverage: "+ str(leverage))
+        print("sl: "+ str(stoploss_distance))
+        print("entry_price: "+ str(entry))
+        print (position_sizes)
+        
+        # Place order
+        order = order_class.open_short(price=entry, tp=tp_price, sl=stoploss_price, coin=coin, order_type="Limit", size=round(position_sizes[1], 4) )
 
 
 

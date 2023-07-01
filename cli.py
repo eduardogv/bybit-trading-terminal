@@ -10,7 +10,7 @@ calculator_class = Calculator()
 def main():
     
     # initialize global variables
-    account_balance = float(202)
+    account_balance = float(210)
     choice = 0
     risk = float(1)
 
